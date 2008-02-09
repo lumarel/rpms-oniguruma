@@ -1,6 +1,6 @@
 Name:		oniguruma
 Version:	5.9.1
-Release:	1%{?dist}
+Release:	1%{?dist}.2
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -97,6 +97,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_includedir}/onig*.h
 
 %changelog
+* Sat Feb  9 2008 Mamoru Tasaka <mtasaka@ioa.s.u-tokyo.ac.jp>
+- Rebuild against gcc43
+
 * Thu Dec 27 2007 Mamoru Tasaka <mtasaka@ioa.s.u-tokyo.ac.jp> - 5.9.1-1
 - 5.9.1
 
