@@ -1,12 +1,16 @@
 Name:		oniguruma
-Version:	5.9.1
-Release:	3%{?dist}
+Version:	5.9.2
+Release:	1%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
 License:	BSD
 URL:		http://www.geocities.jp/kosako3/oniguruma/
 Source0:	http://www.geocities.jp/kosako3/oniguruma/archive/onig-%{version}.tar.gz
+# FIXME
+# Don't know exactly why, however without Patch0 onig_new returns
+# NULL reg variable
+Patch0:		oniguruma-5.9.2-onig_new-returns-NULL-reg.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	ruby >= 1.8
@@ -31,6 +35,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n onig-%{version}
+%patch0 -p1 -b .nullreg
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
 
 for f in \
@@ -97,6 +102,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_includedir}/onig*.h
 
 %changelog
+* Fri Jan 15 2010 Mamoru Tasaka <mtasaka@ioa.s.u-tokyo.ac.jp> - 5.9.2-1
+- 5.9.2
+
 * Sat Jul 25 2009 Mamoru Tasaka <mtasaka@ioa.s.u-tokyo.ac.jp> - 5.9.1-3
 - F-12: Mass rebuild
 
