@@ -1,6 +1,6 @@
 Name:		oniguruma
-Version:	5.9.2
-Release:	4%{?dist}
+Version:	5.9.3
+Release:	1%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -11,7 +11,6 @@ Source0:	http://www.geocities.jp/kosako3/oniguruma/archive/onig-%{version}.tar.g
 # Don't know exactly why, however without Patch0 onig_new returns
 # NULL reg variable
 Patch0:		oniguruma-5.9.2-onig_new-returns-NULL-reg.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	ruby >= 1.8
 #Requires:	
@@ -26,7 +25,7 @@ for every regular expression object can be specified.
 %package	devel
 Summary:	Development files for %{name}
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?isa} = %{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -57,15 +56,11 @@ done
 
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	INSTALL="%{__install} -c -p"
 find $RPM_BUILD_ROOT -name '*.la' \
 	-exec %{__rm} -f {} ';'
-
-%clean
-%{__rm} -rf $RPM_BUILD_ROOT
 
 %check
 %{__make} check
@@ -102,6 +97,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_includedir}/onig*.h
 
 %changelog
+* Fri Jan  4 2013 Mamoru TASAKA <mtasaka@fedoraproject.org> - 5.9.3-1
+- 5.9.3
+
 * Fri Jul 20 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.9.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
