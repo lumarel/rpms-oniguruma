@@ -1,6 +1,6 @@
 Name:		oniguruma
-Version:	5.9.3
-Release:	2%{?dist}
+Version:	5.9.4
+Release:	1%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -95,8 +95,12 @@ find $RPM_BUILD_ROOT -name '*.la' \
 
 %{_libdir}/libonig.so
 %{_includedir}/onig*.h
+%{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Mon Apr 29 2013 Mamoru TASAKA <mtasaka@fedoraproject.org> - 5.9.4-1
+- 5.9.4
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 5.9.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
