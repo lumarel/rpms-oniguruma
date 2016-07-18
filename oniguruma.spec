@@ -1,12 +1,12 @@
 Name:		oniguruma
-Version:	5.9.6
-Release:	3%{?dist}
+Version:	6.0.0
+Release:	1%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
 License:	BSD
-URL:		http://www.geocities.jp/kosako3/oniguruma/
-Source0:	http://www.geocities.jp/kosako3/oniguruma/archive/onig-%{version}.tar.gz
+URL:		https://github.com/kkos/oniguruma/
+Source0:	https://github.com/kkos/oniguruma/releases/download/v%{version}/onig-%{version}.tar.gz
 # FIXME
 # Don't know exactly why, however without Patch0 onig_new returns
 # NULL reg variable
@@ -34,7 +34,9 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n onig-%{version}
+( cd src
 %patch0 -p1 -b .nullreg
+)
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
 
 for f in \
@@ -50,6 +52,7 @@ done
 
 %build
 %configure \
+    --disable-silent-rules \
 	--disable-static \
 	--with-rubydir=%{_bindir}
 %{__make} %{?_smp_mflags}
@@ -80,7 +83,7 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %lang(ja)	%doc	README.ja
 %lang(ja)	%doc	index_ja.html
 
-%{_libdir}/libonig.so.*
+%{_libdir}/libonig.so.3*
 
 %files devel
 %defattr(-,root,root,-)
@@ -98,6 +101,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Mon Jul 11 2016 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.0.0-1
+- 6.0.0
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 5.9.6-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
