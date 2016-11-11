@@ -1,5 +1,5 @@
 Name:		oniguruma
-Version:	6.1.1
+Version:	6.1.2
 Release:	1%{?dist}
 Summary:	Regular expressions library
 
@@ -101,6 +101,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Fri Nov 11 2016 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.1.2-1
+- 6.1.2
+
 * Sun Oct 30 2016 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.1.1-1
 - 6.1.1
 
