@@ -1,6 +1,6 @@
 Name:		oniguruma
 Version:	6.2.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -11,9 +11,6 @@ Source0:	https://github.com/kkos/oniguruma/releases/download/v%{version}/onig-%{
 # Don't know exactly why, however without Patch0 onig_new returns
 # NULL reg variable
 Patch0:		oniguruma-5.9.2-onig_new-returns-NULL-reg.patch
-
-BuildRequires:	ruby >= 1.8
-#Requires:	
 
 %description
 Oniguruma is a regular expressions library.
@@ -101,6 +98,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Wed Apr 26 2017 Nils Philippsen <nils@redhat.com> - 6.2.0-2
+- remove unnecessary BR: ruby
+
 * Fri Apr 21 2017 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.2.0-1
 - 6.2.0
 
