@@ -1,6 +1,6 @@
 Name:		oniguruma
-Version:	6.2.0
-Release:	2%{?dist}
+Version:	6.3.0
+Release:	1%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -98,6 +98,10 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Tue May 30 2017 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.3.0-1
+- 6.3.0
+  - CVEs 2017-9226 CVE-2017-9225 CVE-2017-9224 CVE-2017-9227 CVE-2017-9229 CVE-2017-9228
+
 * Wed Apr 26 2017 Nils Philippsen <nils@redhat.com> - 6.2.0-2
 - remove unnecessary BR: ruby
 
