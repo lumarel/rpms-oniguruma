@@ -1,5 +1,5 @@
---- onig-5.9.2/regcomp.c.debug	2010-01-05 23:13:38.000000000 +0900
-+++ onig-5.9.2/regcomp.c	2010-01-15 03:58:15.000000000 +0900
+--- onig-5.9.2/regcomp.c.debug	2017-07-03 09:04:43.000000000 +0900
++++ onig-5.9.2/regcomp.c	2017-07-05 15:49:15.000000000 +0900
 @@ -5536,19 +5536,22 @@
  	  OnigErrorInfo* einfo)
  {
@@ -13,11 +13,11 @@
  
 -  r = onig_reg_init(*reg, option, ONIGENC_CASE_FOLD_DEFAULT, enc, syntax);
 +  r = onig_reg_init(regg, option, ONIGENC_CASE_FOLD_DEFAULT, enc, syntax);
-   if (r) goto err;
+   if (r != 0) goto err;
  
 -  r = onig_compile(*reg, pattern, pattern_end, einfo);
 +  r = onig_compile(regg, pattern, pattern_end, einfo);
-   if (r) {
+   if (r != 0) {
    err:
 -    onig_free(*reg);
 -    *reg = NULL;

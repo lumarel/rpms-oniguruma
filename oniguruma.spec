@@ -1,5 +1,5 @@
 Name:		oniguruma
-Version:	6.3.0
+Version:	6.4.0
 Release:	1%{?dist}
 Summary:	Regular expressions library
 
@@ -10,7 +10,7 @@ Source0:	https://github.com/kkos/oniguruma/releases/download/v%{version}/onig-%{
 # FIXME
 # Don't know exactly why, however without Patch0 onig_new returns
 # NULL reg variable
-Patch0:		oniguruma-5.9.2-onig_new-returns-NULL-reg.patch
+Patch0:		oniguruma-6.4.0-onig_new-returns-NULL-reg.patch
 
 %description
 Oniguruma is a regular expressions library.
@@ -36,6 +36,7 @@ developing applications that use %{name}.
 )
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
 
+%if 0
 for f in \
 	README.ja \
 	doc/API.ja \
@@ -46,6 +47,7 @@ for f in \
 		( touch -r $f $f.tmp ; %{__mv} -f $f.tmp $f ) || \
 		%{__rm} -f $f.tmp
 done
+%endif
 
 %build
 %configure \
@@ -98,6 +100,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Wed Jul  5 2017 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.4.0-1
+- 6.4.0
+
 * Tue May 30 2017 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.3.0-1
 - 6.3.0
   - CVEs 2017-9226 CVE-2017-9225 CVE-2017-9224 CVE-2017-9227 CVE-2017-9229 CVE-2017-9228
