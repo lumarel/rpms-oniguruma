@@ -1,5 +1,5 @@
 Name:		oniguruma
-Version:	6.8.1
+Version:	6.8.2
 Release:	1%{?dist}
 Summary:	Regular expressions library
 
@@ -80,9 +80,13 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %files devel
 %defattr(-,root,root,-)
 %doc	doc/API
+%doc	doc/CALLOUTS.API
+%doc	doc/CALLOUTS.BUILTIN
 %doc	doc/FAQ
 %doc	doc/RE
 %lang(ja)	%doc	doc/API.ja
+%lang(ja)	%doc	doc/CALLOUTS.API.ja
+%lang(ja)	%doc	doc/CALLOUTS.BUILTIN.ja
 %lang(ja)	%doc	doc/FAQ.ja
 %lang(ja)	%doc	doc/RE.ja
 
@@ -93,6 +97,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Mon Apr 23 2018 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.8.2-1
+- 6.8.2
+
 * Sun Apr  1 2018 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.8.1-1
 - 6.8.1
 
