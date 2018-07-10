@@ -66,7 +66,6 @@ find $RPM_BUILD_ROOT -name '*.la' \
 
 
 %files
-%defattr(-,root,root,-)
 %doc	AUTHORS
 %license	COPYING
 %doc	HISTORY
@@ -78,7 +77,6 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/libonig.so.5*
 
 %files devel
-%defattr(-,root,root,-)
 %doc	doc/API
 %doc	doc/CALLOUTS.API
 %doc	doc/CALLOUTS.BUILTIN
