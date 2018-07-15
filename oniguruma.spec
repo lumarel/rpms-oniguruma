@@ -8,6 +8,8 @@ License:	BSD
 URL:		https://github.com/kkos/oniguruma/
 Source0:	https://github.com/kkos/oniguruma/releases/download/v%{version}/onig-%{version}.tar.gz
 
+BuildRequires:	gcc
+
 %description
 Oniguruma is a regular expressions library.
 The characteristics of this library is that different character encoding
