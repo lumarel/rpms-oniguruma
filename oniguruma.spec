@@ -1,6 +1,6 @@
 Name:		oniguruma
 Version:	6.8.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -99,6 +99,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Sat Sep  8 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.8.2-3
+- Bump release
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 6.8.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
