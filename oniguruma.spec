@@ -1,12 +1,11 @@
 Name:		oniguruma
-Version:	6.8.2
-Release:	2%{?dist}
+Version:	6.9.0
+Release:	1%{?dist}
 Summary:	Regular expressions library
 
-Group:		System Environment/Libraries
 License:	BSD
-URL:		https://github.com/kkos/oniguruma/
-Source0:	https://github.com/kkos/oniguruma/releases/download/v%{version}/onig-%{version}.tar.gz
+URL:		https://github.com/kkos/oniguruma
+Source0:	%{url}/releases/download/v%{version}/onig-%{version}.tar.gz
 
 BuildRequires:	gcc
 
@@ -16,89 +15,55 @@ The characteristics of this library is that different character encoding
 for every regular expression object can be specified.
 (supported APIs: GNU regex, POSIX and Oniguruma native)
 
-
 %package	devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name}%{?isa} = %{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
-
 %prep
 %setup -q -n onig-%{version}
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
 
-%if 0
-for f in \
-	README.ja \
-	doc/API.ja \
-	doc/FAQ.ja \
-	doc/RE.ja
-	do
-	iconv -f EUC-JP -t UTF-8 $f > $f.tmp && \
-		( touch -r $f $f.tmp ; %{__mv} -f $f.tmp $f ) || \
-		%{__rm} -f $f.tmp
-done
-%endif
-
 %build
 %configure \
-    --disable-silent-rules \
+	--disable-silent-rules \
 	--disable-static \
 	--with-rubydir=%{_bindir}
-%{__make} %{?_smp_mflags}
-
+%make_build
 
 %install
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	INSTALL="%{__install} -c -p"
-find $RPM_BUILD_ROOT -name '*.la' \
-	-exec %{__rm} -f {} ';'
+%make_install
+find %{buildroot} -type f -name '*.la' -print -delete
+find doc -mindepth 1 -type f -name '*.ja' -prune -o -print0 | xargs -0 echo "%%doc" > doc.files
+find doc -mindepth 1 -type f -name '*.ja' -print0 | xargs -0 echo "%%lang(ja) %%doc" >> doc.files
 
 %check
-%{__make} check
+%make_build check
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
+%ldconfig_scriptlets
 
 %files
-%defattr(-,root,root,-)
-%doc	AUTHORS
-%license	COPYING
-%doc	HISTORY
-%doc	README.md
-%doc	index.html
-%lang(ja)	%doc	README_japanese
-%lang(ja)	%doc	index_ja.html
-
+%license COPYING
+%doc AUTHORS HISTORY
+%doc README.md
+%lang(ja) %doc README.md
+%doc index.html
+%lang(ja) %doc index_ja.html
 %{_libdir}/libonig.so.5*
 
-%files devel
-%defattr(-,root,root,-)
-%doc	doc/API
-%doc	doc/CALLOUTS.API
-%doc	doc/CALLOUTS.BUILTIN
-%doc	doc/FAQ
-%doc	doc/RE
-%lang(ja)	%doc	doc/API.ja
-%lang(ja)	%doc	doc/CALLOUTS.API.ja
-%lang(ja)	%doc	doc/CALLOUTS.BUILTIN.ja
-%lang(ja)	%doc	doc/FAQ.ja
-%lang(ja)	%doc	doc/RE.ja
-
+%files devel -f doc.files
 %{_bindir}/onig-config
-
 %{_libdir}/libonig.so
 %{_includedir}/onig*.h
-%{_libdir}/pkgconfig/%{name}.pc	
+%{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Sep 08 2018 Igor Gnatenko <ignatenkorbain@fedoraproject.org> - 6.9.0-1
+- Update to 6.9.0
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 6.8.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
