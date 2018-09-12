@@ -1,6 +1,6 @@
 Name:		oniguruma
-Version:	6.8.2
-Release:	3%{?dist}
+Version:	6.9.0
+Release:	2%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -46,7 +46,7 @@ done
 
 %build
 %configure \
-    --disable-silent-rules \
+	--disable-silent-rules \
 	--disable-static \
 	--with-rubydir=%{_bindir}
 %{__make} %{?_smp_mflags}
@@ -99,7 +99,10 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
-* Sat Sep  8 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.8.2-3
+* Wed Sep 12 2018 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.0-2
+- 6.9.0
+
+* Sat Sep  8 2018 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.8.2-3
 - Bump release
 
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 6.8.2-2
