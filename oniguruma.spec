@@ -1,6 +1,8 @@
+%undefine	_changelog_trimtime
+
 Name:		oniguruma
-Version:	6.9.0
-Release:	2%{?dist}
+Version:	6.9.1
+Release:	1%{?dist}
 Summary:	Regular expressions library
 
 Group:		System Environment/Libraries
@@ -99,6 +101,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Wed Dec 12 2018 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.1-1
+- 6.9.1
+
 * Wed Sep 12 2018 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.0-2
 - 6.9.0
 
