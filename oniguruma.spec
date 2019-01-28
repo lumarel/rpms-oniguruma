@@ -5,7 +5,6 @@ Version:	6.9.1
 Release:	1%{?dist}
 Summary:	Regular expressions library
 
-Group:		System Environment/Libraries
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
 Source0:	https://github.com/kkos/oniguruma/releases/download/v%{version}/onig-%{version}.tar.gz
@@ -21,7 +20,6 @@ for every regular expression object can be specified.
 
 %package	devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
 Requires:	%{name}%{?isa} = %{version}-%{release}
 
 %description    devel
