@@ -1,13 +1,18 @@
 %undefine	_changelog_trimtime
 
+%global	mainver	6.9.2
+%global	betaver	rc3
+
+%global	fedorarel	1
+
 Name:		oniguruma
-Version:	6.9.1
-Release:	2%{?dist}
+Version:	%{mainver}
+Release:	%{?betaver:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
 Summary:	Regular expressions library
 
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
-Source0:	https://github.com/kkos/oniguruma/releases/download/v%{version}/onig-%{version}.tar.gz
+Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?betaver:-%betaver}.tar.gz
 
 BuildRequires:	gcc
 
@@ -28,7 +33,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q -n onig-%{version}
+%setup -q -n onig-%{mainver}
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
 
 %if 0
@@ -84,6 +89,8 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %doc	doc/CALLOUTS.BUILTIN
 %doc	doc/FAQ
 %doc	doc/RE
+%doc	doc/SYNTAX.md
+%doc	doc/UNICODE_PROPERTIES
 %lang(ja)	%doc	doc/API.ja
 %lang(ja)	%doc	doc/CALLOUTS.API.ja
 %lang(ja)	%doc	doc/CALLOUTS.BUILTIN.ja
@@ -97,6 +104,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Wed Apr 24 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.2-0.1.rc3
+- 6.9.2-rc3
+
 * Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
