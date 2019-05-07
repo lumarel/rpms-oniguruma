@@ -1,7 +1,7 @@
 %undefine	_changelog_trimtime
 
 %global	mainver	6.9.2
-%global	betaver	rc3
+#%%global	betaver	rc3
 
 %global	fedorarel	1
 
@@ -104,6 +104,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Tue May  7 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.2-1
+- rc3 released as 6.9.2 final release
+
 * Wed Apr 24 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.2-0.1.rc3
 - 6.9.2-rc3
 
