@@ -3,7 +3,7 @@
 %global	mainver	6.9.2
 #%%global	betaver	rc3
 
-%global	fedorarel	1
+%global	fedorarel	2
 
 Name:		oniguruma
 Version:	%{mainver}
@@ -13,6 +13,14 @@ Summary:	Regular expressions library
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
 Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?betaver:-%betaver}.tar.gz
+# upstream patches
+Patch10:	0010-Fix-CVE-2019-13225-problem-in-converting-if-then-els.patch
+#Patch11:	0011-Fix-CVE-2019-13224-don-t-allow-different-encodings-f.patch
+# Not use Patch11 for F-30 and below, this is almost API change (deprecation of API) in 
+# onig_new_deluxe() and this change should be avoided (if possible) in stable
+# branch
+# Instead use another fix
+Patch101:	0101-onig_new_deluxe-don-t-free-new-pattern-if-success.patch
 
 BuildRequires:	gcc
 
@@ -48,6 +56,10 @@ for f in \
 		%{__rm} -f $f.tmp
 done
 %endif
+
+%patch10 -p1 -b .CVE-2019-13225
+#%%patch11 -p1 -b .CVE-2019-13224
+%patch101 -p1 -b .CVE-2019-13224
 
 %build
 %configure \
@@ -104,6 +116,10 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Fri Jul 12 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.2-2
+- Upstream patch for CVE-2019-13225 (#1728966)
+- NON-upstream patch for CVE-2019-13224 (#1728971)
+
 * Tue May  7 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.2-1
 - rc3 released as 6.9.2 final release
 
