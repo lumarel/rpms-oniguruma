@@ -7,7 +7,7 @@
 
 Name:		oniguruma
 Version:	%{mainver}
-Release:	%{?betaver:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
+Release:	%{?betaver:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.1
 Summary:	Regular expressions library
 
 License:	BSD
@@ -116,6 +116,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.2-2.1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Fri Jul 12 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.2-2
 - Upstream patch for CVE-2019-13225 (#1728966)
 - NON-upstream patch for CVE-2019-13224 (#1728971)
