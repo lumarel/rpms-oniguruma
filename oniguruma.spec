@@ -1,26 +1,18 @@
 %undefine	_changelog_trimtime
 
-%global	mainver	6.9.2
+%global	mainver	6.9.3
 #%%global	betaver	rc3
 
-%global	fedorarel	2
+%global	fedorarel	1
 
 Name:		oniguruma
 Version:	%{mainver}
-Release:	%{?betaver:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.1
+Release:	%{?betaver:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
 Summary:	Regular expressions library
 
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
 Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?betaver:-%betaver}.tar.gz
-# upstream patches
-Patch10:	0010-Fix-CVE-2019-13225-problem-in-converting-if-then-els.patch
-#Patch11:	0011-Fix-CVE-2019-13224-don-t-allow-different-encodings-f.patch
-# Not use Patch11 for F-30 and below, this is almost API change (deprecation of API) in 
-# onig_new_deluxe() and this change should be avoided (if possible) in stable
-# branch
-# Instead use another fix
-Patch101:	0101-onig_new_deluxe-don-t-free-new-pattern-if-success.patch
 
 BuildRequires:	gcc
 
@@ -56,10 +48,6 @@ for f in \
 		%{__rm} -f $f.tmp
 done
 %endif
-
-%patch10 -p1 -b .CVE-2019-13225
-#%%patch11 -p1 -b .CVE-2019-13224
-%patch101 -p1 -b .CVE-2019-13224
 
 %build
 %configure \
@@ -116,6 +104,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Sun Aug 11 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.3-1
+- 6.9.3
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.2-2.1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
