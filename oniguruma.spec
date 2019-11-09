@@ -1,7 +1,7 @@
 %undefine	_changelog_trimtime
 
-%global	mainver	6.9.3
-#%%global	betaver	rc3
+%global	mainver	6.9.4
+%global	betaver	rc1
 
 %global	fedorarel	1
 
@@ -104,6 +104,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Sat Nov  9 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.4-0.1.rc1
+- 6.9.4 rc1
+
 * Sun Aug 11 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.3-1
 - 6.9.3
 
