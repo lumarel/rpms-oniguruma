@@ -1,9 +1,9 @@
 %undefine	_changelog_trimtime
 
 %global	mainver	6.9.4
-%global	betaver	rc3
+#%%global	betaver	rc3
 
-%global	fedorarel	2
+%global	fedorarel	0.100
 
 Name:		oniguruma
 Version:	%{mainver}
@@ -104,6 +104,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc	
 
 %changelog
+* Fri Nov 29 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.4-1
+- 6.9.4 final
+
 * Fri Nov 29 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.4-0.2.rc3
 - 6.9.4 rc3 (CVE-2019-19204 CVE-2019-19203 CVE-2019-19012)
 
