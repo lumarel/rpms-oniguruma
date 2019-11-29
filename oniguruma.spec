@@ -3,7 +3,7 @@
 %global	mainver	6.9.4
 #%%global	betaver	rc3
 
-%global	fedorarel	0.100
+%global	fedorarel	1
 
 Name:		oniguruma
 Version:	%{mainver}
