@@ -105,10 +105,10 @@ find $RPM_BUILD_ROOT -name '*.la' \
 
 %changelog
 * Fri Nov 29 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.4-0.2.rc3
-- 6.9.4 rc3 (CVE-2019-19246 CVE-2019-19204 CVE-2019-19203 CVE-2019-19012)
+- 6.9.4 rc3 (CVE-2019-19204 CVE-2019-19203 CVE-2019-19012)
 
 * Sat Nov  9 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.4-0.1.rc1
-- 6.9.4 rc1
+- 6.9.4 rc1 (CVE-2019-19246)
 
 * Sun Aug 11 2019 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.3-1
 - 6.9.3 (CVE-2019-13224 CVE-2019-13225 CVE-2019-16163)
