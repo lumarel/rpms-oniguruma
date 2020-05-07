@@ -1,13 +1,14 @@
 %undefine	_changelog_trimtime
 
-%global	mainver	6.9.4
-#%%global	betaver	rc3
+%global	mainver	6.9.5
+%global	betaver	rev1
+%undefine	prerelease
 
 %global	fedorarel	1
 
 Name:		oniguruma
 Version:	%{mainver}
-Release:	%{?betaver:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.1
+Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
 Summary:	Regular expressions library
 
 License:	BSD
@@ -51,6 +52,7 @@ done
 
 %build
 %configure \
+	--enable-posix-api \
 	--disable-silent-rules \
 	--disable-static \
 	--with-rubydir=%{_bindir}
@@ -101,9 +103,12 @@ find $RPM_BUILD_ROOT -name '*.la' \
 
 %{_libdir}/libonig.so
 %{_includedir}/onig*.h
-%{_libdir}/pkgconfig/%{name}.pc	
+%{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu May  7 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.5-1.rev1
+- 6.9.5 revised 1
+
 * Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.4-1.1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
