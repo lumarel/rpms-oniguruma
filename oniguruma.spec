@@ -4,7 +4,7 @@
 %global	betaver	rev1
 %undefine	prerelease
 
-%global	fedorarel	1
+%global	fedorarel	2
 
 Name:		oniguruma
 Version:	%{mainver}
@@ -51,6 +51,11 @@ done
 %endif
 
 %build
+# This package fails its testsuite when compiled with LTO, but the real problem
+# is that it ends up mixing and matching regexp bits between itself and glibc.
+# Disable LTO
+%define _lto_cflags %{nil}
+
 %configure \
 	--enable-posix-api \
 	--disable-silent-rules \
@@ -106,6 +111,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Wed Jul  1 2020 Jeff Law <law@redhat.com> - 6.9.5-2.rev1
+- Disable LTO
+
 * Thu May  7 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.5-1.rev1
 - 6.9.5 revised 1
 
