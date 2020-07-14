@@ -8,7 +8,7 @@
 
 Name:		oniguruma
 Version:	%{mainver}
-Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
+Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.1
 Summary:	Regular expressions library
 
 License:	BSD
@@ -61,7 +61,7 @@ done
 	--disable-silent-rules \
 	--disable-static \
 	--with-rubydir=%{_bindir}
-%{__make} %{?_smp_mflags}
+%make_build
 
 
 %install
@@ -111,6 +111,10 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Jul 14 2020 Tom Stellard <tstellar@redhat.com> - 6.9.5-2.rev1.1
+- Use make macros
+- https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
+
 * Wed Jul  1 2020 Jeff Law <law@redhat.com> - 6.9.5-2.rev1
 - Disable LTO
 
