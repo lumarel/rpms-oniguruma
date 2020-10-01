@@ -4,16 +4,19 @@
 %global	betaver	rev1
 %undefine	prerelease
 
-%global	fedorarel	2
+%global	fedorarel	3
 
 Name:		oniguruma
 Version:	%{mainver}
-Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.1
+Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
 Summary:	Regular expressions library
 
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
 Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?betaver:-%betaver}.tar.gz
+# https://github.com/kkos/oniguruma/commit/cbe9f8bd9cfc6c3c87a60fbae58fa1a85db59df0
+# https://github.com/kkos/oniguruma/issues/207
+Patch1:	oniguruma-XXX-CVE-2020-26159.patch
 
 BuildRequires:	gcc
 
@@ -36,6 +39,7 @@ developing applications that use %{name}.
 %prep
 %setup -q -n onig-%{mainver}
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
+%patch1 -p1 -b .CVE-2020-26159
 
 %if 0
 for f in \
@@ -111,6 +115,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Oct  1 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.5-3.rev1
+- Apply upstream fix for CVE-2020-26159
+
 * Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.5-2.rev1.1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
