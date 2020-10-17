@@ -1,10 +1,10 @@
 %undefine	_changelog_trimtime
 
 %global	mainver	6.9.6
-%global	betaver	rc2
+%global	betaver	rc3
 %define	prerelease	1
 
-%global	fedorarel	1
+%global	fedorarel	2
 
 Name:		oniguruma
 Version:	%{mainver}
@@ -14,8 +14,6 @@ Summary:	Regular expressions library
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
 Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?betaver:-%betaver}.tar.gz
-# Upstream patches
-Patch1:	0001-fix-219-Binary-incompatibilty-between-6.9.5_rev1-6.9.patch
 
 BuildRequires:	gcc
 
@@ -37,7 +35,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n onig-%{mainver}
-%patch1 -p1 -b .compati
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
 
 
@@ -103,6 +100,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Oct 17 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.2.rc3
+- 6.9.2 rc3
+
 * Mon Oct 12 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.1.rc2
 - 6.9.2 rc2
 - Apply upstream patch to keep binary compatibility with 6.9.5
