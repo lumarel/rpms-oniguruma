@@ -107,6 +107,7 @@ find $RPM_BUILD_ROOT -name '*.la' \
 * Tue Oct 20 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.3.rc3
 - Apply upstream patch for upstream bug 221
   - Revert change for false CVE-2020-26159 issue
+    https://github.com/kkos/oniguruma/issues/221
 
 * Sat Oct 17 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.2.rc3
 - 6.9.2 rc3
