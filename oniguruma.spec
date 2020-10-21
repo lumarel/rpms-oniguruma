@@ -1,10 +1,10 @@
 %undefine	_changelog_trimtime
 
 %global	mainver	6.9.6
-%global	betaver	rc3
+%global	betaver	rc4
 %define	prerelease	1
 
-%global	fedorarel	3
+%global	fedorarel	4
 
 Name:		oniguruma
 Version:	%{mainver}
@@ -14,9 +14,6 @@ Summary:	Regular expressions library
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
 Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?betaver:-%betaver}.tar.gz
-# https://github.com/kkos/oniguruma/issues/221
-# https://github.com/kkos/oniguruma/commit/3603d78f0a3dc80e4d450509120c26a5ffcd293b
-Patch0:	oniguruma-6.9.6-upstream-bug221.patch
 
 BuildRequires:	gcc
 
@@ -38,7 +35,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n onig-%{mainver}
-%patch0 -p1 -b .up221
 %{__sed} -i.multilib -e 's|-L@libdir@||' onig-config.in
 
 
@@ -104,6 +100,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Wed Oct 21 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.4.rc4
+- 6.9.2 rc4
+
 * Tue Oct 20 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.3.rc3
 - Apply upstream patch for upstream bug 221
   - Revert change for false CVE-2020-26159 issue
