@@ -1,10 +1,10 @@
 %undefine	_changelog_trimtime
 
 %global	mainver	6.9.6
-%global	betaver	rc4
-%define	prerelease	1
+#%%global	betaver	rc4
+#%%define	prerelease	1
 
-%global	fedorarel	4
+%global	fedorarel	1
 
 Name:		oniguruma
 Version:	%{mainver}
@@ -100,8 +100,11 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Nov  5 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-1
+- 6.9.6
+
 * Wed Oct 21 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.4.rc4
-- 6.9.2 rc4
+- 6.9.6 rc4
 
 * Tue Oct 20 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.3.rc3
 - Apply upstream patch for upstream bug 221
@@ -109,10 +112,10 @@ find $RPM_BUILD_ROOT -name '*.la' \
     https://github.com/kkos/oniguruma/issues/221
 
 * Sat Oct 17 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.2.rc3
-- 6.9.2 rc3
+- 6.9.6 rc3
 
 * Mon Oct 12 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.6-0.1.rc2
-- 6.9.2 rc2
+- 6.9.6 rc2
 - Apply upstream patch to keep binary compatibility with 6.9.5
 
 * Thu Oct  1 2020 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.5-3.rev1
