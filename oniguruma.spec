@@ -1,19 +1,20 @@
 %undefine	_changelog_trimtime
 
-%global	mainver	6.9.6
+%global	mainver	6.9.7
+%global	postver	1
 #%%global	betaver	rc4
 #%%define	prerelease	1
 
 %global	fedorarel	1
 
 Name:		oniguruma
-Version:	%{mainver}
-Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.2
+Version:	%{mainver}%{?postver:.%postver}
+Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
 Summary:	Regular expressions library
 
 License:	BSD
 URL:		https://github.com/kkos/oniguruma/
-Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?betaver:-%betaver}.tar.gz
+Source0:	https://github.com/kkos/oniguruma/releases/download/v%{mainver}%{?betaver:_%betaver}/onig-%{mainver}%{?postver:.%postver}%{?betaver:-%betaver}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	gcc
@@ -101,6 +102,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat May  1 2021 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.7.1-1
+- 6.9.7.1
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.6-1.2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
