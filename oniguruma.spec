@@ -1,7 +1,7 @@
 %undefine	_changelog_trimtime
 
-%global	mainver	6.9.7
-%global	postver	1
+%global	mainver	6.9.8
+#%%global	postver	1
 #%%global	betaver	rc4
 #%%define	prerelease	1
 
@@ -9,7 +9,7 @@
 
 Name:		oniguruma
 Version:	%{mainver}%{?postver:.%postver}
-Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.2
+Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
 Summary:	Regular expressions library
 
 License:	BSD
@@ -102,6 +102,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Apr 30 2022 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.8-1
+- 6.9.8
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.7.1-1.2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
