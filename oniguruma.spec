@@ -9,7 +9,7 @@
 
 Name:		oniguruma
 Version:	%{mainver}%{?postver:.%postver}
-Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}
+Release:	%{?prerelease:0.}%{fedorarel}%{?betaver:.%betaver}%{?dist}.1
 Summary:	Regular expressions library
 
 License:	BSD
@@ -102,6 +102,9 @@ find $RPM_BUILD_ROOT -name '*.la' \
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Fri Jul 22 2022 Fedora Release Engineering <releng@fedoraproject.org> - 6.9.8-1.1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Sat Apr 30 2022 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.8-1
 - 6.9.8
 
