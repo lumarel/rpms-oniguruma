@@ -122,6 +122,9 @@ autoreconf -fi
 %{_libdir}/libonig.so
 %{_includedir}/onig*.h
 %{_libdir}/pkgconfig/%{name}.pc
+%if 0%{?rhel} < 10
+%exclude %{_libdir}/libonig.la
+%endif
 
 %changelog
 * Tue Oct 17 2023 Mamoru TASAKA <mtasaka@fedoraproject.org> - 6.9.9-1
